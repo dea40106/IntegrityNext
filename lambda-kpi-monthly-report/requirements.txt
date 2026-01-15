@@ -1,0 +1,5 @@
+# Optional.
+# In AWS Lambda ist boto3 meist schon vorhanden.
+# Lokal brauchst du boto3/botocore nur, wenn du wirklich AWS Calls testest.
+boto3
+botocore

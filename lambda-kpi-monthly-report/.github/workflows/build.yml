@@ -1,0 +1,27 @@
+name: Build Lambda Zip
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - "v*.*.*"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Create zip
+        run: |
+          mkdir -p build
+          cp -r src/* build/
+          cd build
+          zip -r ../lambda-kpi-monthly-report.zip .
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: lambda-kpi-monthly-report
+          path: lambda-kpi-monthly-report.zip
+
